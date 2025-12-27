@@ -26,6 +26,14 @@ const TopicPage: React.FC = () => {
     return topics.find((t) => t.id === Number(id));
   }, [topics, id]);
 
+  // Words sorted by createdAt descending (newest first)
+  const sortedWords = useMemo(() => {
+    if (!topic) return [];
+    return [...topic.words].sort((a, b) => 
+      dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
+    );
+  }, [topic]);
+
   useEffect(() => {
     loadTopics();
   }, []);
@@ -234,7 +242,7 @@ const TopicPage: React.FC = () => {
             : 'слов'}
         </p>
         <div className="header-actions">
-          <Space size="middle">
+          <Space size="middle" wrap>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ color: displayMode === 'russian' ? 'var(--color-accent)' : 'var(--color-text-muted)' }}>
                 RU
@@ -290,7 +298,7 @@ const TopicPage: React.FC = () => {
         </div>
       ) : (
         <div className="words-list">
-          {topic.words.map((word) => (
+          {sortedWords.map((word) => (
             <WordCard
               key={word.id}
               word={getWordWithPending(word)}

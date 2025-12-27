@@ -44,8 +44,10 @@ const TopicForm: React.FC<TopicFormProps> = ({
       open={open}
       onClose={onClose}
       width={400}
-      footer={
-        <Space style={{ width: '100%', justifyContent: 'flex-end' }}>
+      closable={false}
+      className="custom-drawer"
+      extra={
+        <Space>
           <Button onClick={onClose}>Отмена</Button>
           <Button type="primary" onClick={handleSubmit} loading={loading}>
             {editingTopic ? 'Сохранить' : 'Создать'}
