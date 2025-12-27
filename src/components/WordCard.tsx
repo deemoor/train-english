@@ -10,7 +10,7 @@ interface WordCardProps {
   onToggleComplete: () => void;
   onEdit: () => void;
   onDelete: () => void;
-  onIncrementCount: () => void;
+  onIncrementCount: (increment: boolean) => void;
 }
 
 const WordCard: React.FC<WordCardProps> = ({
@@ -41,9 +41,7 @@ const WordCard: React.FC<WordCardProps> = ({
 
   const handleCheckboxClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!isCompleted) {
-      onIncrementCount();
-    }
+    onIncrementCount(!isCompleted);
     onToggleComplete();
   };
 
