@@ -65,13 +65,13 @@ const WordForm: React.FC<WordFormProps> = ({
         </Space>
       }
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" className="drawer-form">
         <Form.Item
           name="eng"
           label="Английское слово"
           rules={[{ required: true, message: 'Введите слово на английском' }]}
         >
-          <Input placeholder="to drop off" size="large" />
+          <Input placeholder="to drop off" />
         </Form.Item>
         
         <Form.Item
@@ -79,7 +79,7 @@ const WordForm: React.FC<WordFormProps> = ({
           label="Русский перевод"
           rules={[{ required: true, message: 'Введите перевод на русском' }]}
         >
-          <Input placeholder="сдавать, доставить кого-либо" size="large" />
+          <Input placeholder="сдавать, доставить кого-либо" />
         </Form.Item>
         
         <Form.Item

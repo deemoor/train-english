@@ -262,7 +262,6 @@ const TopicPage: React.FC = () => {
               disabled={pendingCounts.size === 0}
             >
               Сохранить прогресс
-              {pendingCounts.size > 0 && ` (${pendingCounts.size})`}
             </Button>
             <Button
               type="primary"

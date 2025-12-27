@@ -100,6 +100,16 @@ body {
   flex-direction: row-reverse;
 }
 
+/* Drawer form consistent font size */
+.drawer-form .ant-form-item-label > label {
+  font-size: 14px;
+}
+
+.drawer-form .ant-input,
+.drawer-form .ant-input-textarea textarea {
+  font-size: 14px;
+}
+
 /* Back button styles */
 .back-button {
   display: inline-flex;
