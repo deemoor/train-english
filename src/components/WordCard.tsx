@@ -41,8 +41,10 @@ const WordCard: React.FC<WordCardProps> = ({
 
   const handleCheckboxClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!isCompleted) {
+      onIncrementCount();
+    }
     onToggleComplete();
-    onIncrementCount();
   };
 
   const renderHiddenContent = (content: string) => {
