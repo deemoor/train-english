@@ -102,12 +102,17 @@ body {
 
 /* Drawer form consistent font size */
 .drawer-form .ant-form-item-label > label {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .drawer-form .ant-input,
 .drawer-form .ant-input-textarea textarea {
-  font-size: 14px;
+  font-size: 15px;
+  padding: 10px 12px;
+}
+
+.drawer-form .ant-input-textarea textarea {
+  min-height: 70px;
 }
 
 /* Back button styles */
