@@ -84,7 +84,7 @@ const WordForm: React.FC<WordFormProps> = ({
         
         <Form.Item
           name="example"
-          label="Пример использования (необязательно)"
+          label="Пример использования"
         >
           <Input.TextArea 
             placeholder="dropped computer off at the repair shop" 
@@ -94,7 +94,7 @@ const WordForm: React.FC<WordFormProps> = ({
         
         <Form.Item
           name="synonym"
-          label="Синоним (необязательно)"
+          label="Синоним"
         >
           <Input placeholder="leave smth, someone" />
         </Form.Item>
