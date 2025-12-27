@@ -56,12 +56,6 @@
 .topic-card-actions {
   display: flex;
   gap: 4px;
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
-.topic-card:hover .topic-card-actions {
-  opacity: 1;
 }
 
 .topic-card-action-btn {

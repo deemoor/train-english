@@ -21,6 +21,7 @@ const TopicPage: React.FC = () => {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('english');
   const [completedWords, setCompletedWords] = useState<Set<number>>(new Set());
   const [pendingCounts, setPendingCounts] = useState<Map<number, number>>(new Map());
+  const [revealedKey, setRevealedKey] = useState(0);
 
   const topic = useMemo(() => {
     return topics.find((t) => t.id === Number(id));
@@ -199,6 +200,10 @@ const TopicPage: React.FC = () => {
     return { ...word, correctCount: word.correctCount + pending };
   };
 
+   const handleUpdateRevealedKey = () => {
+    setRevealedKey(prev => prev + 1);
+  };
+
   if (loading) {
     return (
       <div className="app-container">
@@ -250,7 +255,10 @@ const TopicPage: React.FC = () => {
               </span>
               <Switch
                 checked={displayMode === 'english'}
-                onChange={(checked) => setDisplayMode(checked ? 'english' : 'russian')}
+                onChange={(checked) => {
+                  setDisplayMode(checked ? 'english' : 'russian');
+                  handleUpdateRevealedKey();
+                }}
               />
               <span style={{ color: displayMode === 'english' ? 'var(--color-accent)' : 'var(--color-text-muted)' }}>
                 EN
@@ -300,17 +308,17 @@ const TopicPage: React.FC = () => {
         <div className="words-list">
           {sortedWords.map((word) => (
             <WordCard
-              key={word.id}
-              word={getWordWithPending(word)}
-              displayMode={displayMode}
-              isCompleted={completedWords.has(word.id)}
-              onToggleComplete={() => handleToggleComplete(word.id)}
-              onEdit={() => {
-                setEditingWord(word);
-                setFormOpen(true);
-              }}
-              onDelete={() => handleDeleteWord(word)}
-              onIncrementCount={(increment) => handleIncrementCount(word.id, increment)}
+            word={getWordWithPending(word)}
+            displayMode={displayMode}
+            isCompleted={completedWords.has(word.id)}
+            onToggleComplete={() => handleToggleComplete(word.id)}
+            onEdit={() => {
+              setEditingWord(word);
+              setFormOpen(true);
+            }}
+            onDelete={() => handleDeleteWord(word)}
+            onIncrementCount={(increment) => handleIncrementCount(word.id, increment)}
+            key={`${word.id}-${revealedKey}`}
             />
           ))}
         </div>
