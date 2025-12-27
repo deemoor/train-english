@@ -54,8 +54,10 @@ const WordForm: React.FC<WordFormProps> = ({
       open={open}
       onClose={onClose}
       width={450}
-      footer={
-        <Space style={{ width: '100%', justifyContent: 'flex-end' }}>
+      closable={false}
+      className="custom-drawer"
+      extra={
+        <Space>
           <Button onClick={onClose}>Отмена</Button>
           <Button type="primary" onClick={handleSubmit} loading={loading}>
             {editingWord ? 'Сохранить' : 'Добавить'}

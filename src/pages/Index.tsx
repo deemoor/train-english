@@ -26,7 +26,11 @@ const Index: React.FC = () => {
     try {
       setLoading(true);
       const data = await api.getTopics();
-      setTopics(data);
+      // Sort by lastUpdated descending
+      const sortedData = [...data].sort((a, b) => 
+        dayjs(b.lastUpdated).valueOf() - dayjs(a.lastUpdated).valueOf()
+      );
+      setTopics(sortedData);
     } catch (error) {
       console.error('Failed to load topics:', error);
       message.error('Не удалось загрузить темы');
@@ -47,7 +51,11 @@ const Index: React.FC = () => {
       };
       const updatedTopics = [...topics, newTopic];
       await api.saveTopics(updatedTopics);
-      setTopics(updatedTopics);
+      // Re-sort after adding
+      const sortedData = [...updatedTopics].sort((a, b) => 
+        dayjs(b.lastUpdated).valueOf() - dayjs(a.lastUpdated).valueOf()
+      );
+      setTopics(sortedData);
       setFormOpen(false);
       message.success('Тема создана');
     } catch (error) {
@@ -68,7 +76,11 @@ const Index: React.FC = () => {
           : t
       );
       await api.saveTopics(updatedTopics);
-      setTopics(updatedTopics);
+      // Re-sort after editing
+      const sortedData = [...updatedTopics].sort((a, b) => 
+        dayjs(b.lastUpdated).valueOf() - dayjs(a.lastUpdated).valueOf()
+      );
+      setTopics(sortedData);
       setEditingTopic(null);
       setFormOpen(false);
       message.success('Тема обновлена');
