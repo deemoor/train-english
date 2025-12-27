@@ -153,14 +153,18 @@ const TopicPage: React.FC = () => {
     });
   };
 
-  const handleIncrementCount = (wordId: number) => {
+  const handleIncrementCount = (wordId: number, increment: boolean) => {
     setPendingCounts((prev) => {
       const newMap = new Map(prev);
       const currentPending = newMap.get(wordId) || 0;
-      newMap.set(wordId, currentPending + 1);
+      const newValue = increment ? currentPending + 1 : currentPending - 1;
+      if (newValue === 0) {
+        newMap.delete(wordId);
+      } else {
+        newMap.set(wordId, newValue);
+      }
       return newMap;
     });
-    message.info('Прогресс будет сохранён при нажатии "Сохранить прогресс"');
   };
 
   const handleSaveProgress = async () => {
@@ -309,7 +313,7 @@ const TopicPage: React.FC = () => {
                 setFormOpen(true);
               }}
               onDelete={() => handleDeleteWord(word)}
-              onIncrementCount={() => handleIncrementCount(word.id)}
+              onIncrementCount={(increment) => handleIncrementCount(word.id, increment)}
             />
           ))}
         </div>
