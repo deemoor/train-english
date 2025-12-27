@@ -40,7 +40,7 @@ const TopicForm: React.FC<TopicFormProps> = ({
 
   return (
     <Drawer
-      title={editingTopic ? 'Редактировать тему' : 'Новая тема'}
+      title={editingTopic ? 'Edit topic' : 'New topic'}
       open={open}
       onClose={onClose}
       width={400}
@@ -48,20 +48,20 @@ const TopicForm: React.FC<TopicFormProps> = ({
       className="custom-drawer"
       extra={
         <Space>
-          <Button onClick={onClose}>Отмена</Button>
+          <Button onClick={onClose}>Cancel</Button>
           <Button type="primary" onClick={handleSubmit} loading={loading}>
-            {editingTopic ? 'Сохранить' : 'Создать'}
+            {editingTopic ? 'Save' : 'Create'}
           </Button>
         </Space>
       }
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" className="drawer-form">
         <Form.Item
           name="name"
-          label="Название темы"
-          rules={[{ required: true, message: 'Введите название темы' }]}
+          label="Topic name"
+          rules={[{ required: true, message: 'Required field' }]}
         >
-          <Input placeholder="Например: Глаголы действия" size="large" />
+          <Input placeholder="Enter topic name" size="large" />
         </Form.Item>
       </Form>
     </Drawer>

@@ -46,7 +46,7 @@ const TopicPage: React.FC = () => {
       setTopics(data);
     } catch (error) {
       console.error('Failed to load topics:', error);
-      message.error('Не удалось загрузить данные');
+      message.error('Unable to load topics');
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,7 @@ const TopicPage: React.FC = () => {
       return true;
     } catch (error) {
       console.error('Failed to save:', error);
-      message.error('Не удалось сохранить изменения');
+      message.error('Unable to save changes');
       return false;
     }
   };
@@ -85,7 +85,7 @@ const TopicPage: React.FC = () => {
       );
       if (await saveTopics(updatedTopics)) {
         setFormOpen(false);
-        message.success('Слово добавлено');
+        message.success('Word added');
       }
     } finally {
       setSaving(false);
@@ -110,7 +110,7 @@ const TopicPage: React.FC = () => {
       if (await saveTopics(updatedTopics)) {
         setFormOpen(false);
         setEditingWord(null);
-        message.success('Слово обновлено');
+        message.success('Word updated');
       }
     } finally {
       setSaving(false);
@@ -119,10 +119,10 @@ const TopicPage: React.FC = () => {
 
   const handleDeleteWord = (word: Word) => {
     Modal.confirm({
-      title: 'Удалить слово?',
-      content: `Вы уверены, что хотите удалить "${word.eng}"?`,
-      okText: 'Удалить',
-      cancelText: 'Отмена',
+      title: 'Delete word?',
+      content: `Are you sure you want to delete "${word.eng}"?`,
+      okText: 'Delete',
+      cancelText: 'Cancel',
       okButtonProps: { danger: true },
       onOk: async () => {
         if (!topic) return;
@@ -136,7 +136,7 @@ const TopicPage: React.FC = () => {
             : t
         );
         if (await saveTopics(updatedTopics)) {
-          message.success('Слово удалено');
+          message.success('Word deleted');
         }
       },
     });
@@ -188,7 +188,7 @@ const TopicPage: React.FC = () => {
       if (await saveTopics(updatedTopics)) {
         setPendingCounts(new Map());
         setCompletedWords(new Set());
-        message.success('Прогресс сохранён');
+        message.success('Progress saved');
       }
     } finally {
       setSaving(false);
@@ -218,13 +218,13 @@ const TopicPage: React.FC = () => {
     return (
       <div className="app-container">
         <button className="back-button" onClick={() => navigate('/')}>
-          <ArrowLeftOutlined /> Назад к темам
+          <ArrowLeftOutlined /> Back to topics
         </button>
         <div className="empty-state">
           <div className="empty-state-icon">❓</div>
-          <h3 className="empty-state-title">Тема не найдена</h3>
+          <h3 className="empty-state-title">Topic not found</h3>
           <Button type="primary" onClick={() => navigate('/')}>
-            Вернуться на главную
+            Return to main page
           </Button>
         </div>
       </div>
@@ -234,18 +234,14 @@ const TopicPage: React.FC = () => {
   return (
     <div className="app-container">
       <button className="back-button" onClick={() => navigate('/')}>
-        <ArrowLeftOutlined /> Назад к темам
+        <ArrowLeftOutlined /> Back to topics
       </button>
 
       <header className="page-header">
         <h1 className="page-title">{topic.name}</h1>
         <p className="page-subtitle">
           {topic.words.length}{' '}
-          {topic.words.length === 1
-            ? 'слово'
-            : topic.words.length >= 2 && topic.words.length <= 4
-            ? 'слова'
-            : 'слов'}
+          {topic.words.length === 1 ? 'word' : 'words'}
         </p>
         <div className="header-actions">
           <Space size="middle" wrap>
@@ -270,7 +266,7 @@ const TopicPage: React.FC = () => {
               loading={saving}
               disabled={pendingCounts.size === 0}
             >
-              Сохранить прогресс
+              Save progress
             </Button>
             <Button
               type="primary"
@@ -280,7 +276,7 @@ const TopicPage: React.FC = () => {
                 setFormOpen(true);
               }}
             >
-              Добавить слово
+              Add word
             </Button>
           </Space>
         </div>
@@ -289,9 +285,9 @@ const TopicPage: React.FC = () => {
       {topic.words.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">📝</div>
-          <h3 className="empty-state-title">Пока нет слов</h3>
+          <h3 className="empty-state-title">No words yet</h3>
           <p className="empty-state-description">
-            Добавьте первое слово для изучения
+            Add the first word for study
           </p>
           <Button
             type="primary"
@@ -301,7 +297,7 @@ const TopicPage: React.FC = () => {
               setFormOpen(true);
             }}
           >
-            Добавить слово
+            Add word
           </Button>
         </div>
       ) : (

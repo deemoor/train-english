@@ -33,7 +33,7 @@ const Index: React.FC = () => {
       setTopics(sortedData);
     } catch (error) {
       console.error('Failed to load topics:', error);
-      message.error('Не удалось загрузить темы');
+      message.error('Unable to load topics');
     } finally {
       setLoading(false);
     }
@@ -57,10 +57,10 @@ const Index: React.FC = () => {
       );
       setTopics(sortedData);
       setFormOpen(false);
-      message.success('Тема создана');
+      message.success('Topic created');
     } catch (error) {
       console.error('Failed to create topic:', error);
-      message.error('Не удалось создать тему');
+      message.error('Unable to create topic');
     } finally {
       setSaving(false);
     }
@@ -83,10 +83,10 @@ const Index: React.FC = () => {
       setTopics(sortedData);
       setEditingTopic(null);
       setFormOpen(false);
-      message.success('Тема обновлена');
+      message.success('Topic updated');
     } catch (error) {
       console.error('Failed to update topic:', error);
-      message.error('Не удалось обновить тему');
+      message.error('Unable to update topic');
     } finally {
       setSaving(false);
     }
@@ -94,20 +94,20 @@ const Index: React.FC = () => {
 
   const handleDeleteTopic = (topic: Topic) => {
     Modal.confirm({
-      title: 'Удалить тему?',
-      content: `Вы уверены, что хотите удалить тему "${topic.name}" и все слова в ней?`,
-      okText: 'Удалить',
-      cancelText: 'Отмена',
+      title: 'Delete topic?',
+      content: `Are you sure you want to delete the topic "${topic.name}" and all words in it?`,
+      okText: 'Delete',
+      cancelText: 'Cancel',
       okButtonProps: { danger: true },
       onOk: async () => {
         try {
           const updatedTopics = topics.filter((t) => t.id !== topic.id);
           await api.saveTopics(updatedTopics);
           setTopics(updatedTopics);
-          message.success('Тема удалена');
+          message.success('Topic deleted');
         } catch (error) {
           console.error('Failed to delete topic:', error);
-          message.error('Не удалось удалить тему');
+          message.error('Unable to delete topic');
         }
       },
     });
@@ -139,10 +139,10 @@ const Index: React.FC = () => {
       <header className="page-header">
         <h1 className="page-title">
           <BookOutlined style={{ marginRight: 12 }} />
-          Словарь английского
+          English dictionary
         </h1>
         <p className="page-subtitle">
-          Изучайте новые слова и отслеживайте свой прогресс
+          Learn new words and track your progress
         </p>
         <div className="header-actions">
           <Button
@@ -151,7 +151,7 @@ const Index: React.FC = () => {
             size="large"
             onClick={openCreateForm}
           >
-            Добавить тему
+            Add topic
           </Button>
         </div>
       </header>
@@ -159,12 +159,12 @@ const Index: React.FC = () => {
       {topics.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">📚</div>
-          <h3 className="empty-state-title">Пока нет тем</h3>
+          <h3 className="empty-state-title">No topics yet</h3>
           <p className="empty-state-description">
-            Создайте свою первую тему для изучения слов
+            Create your first topic to start learning words
           </p>
           <Button type="primary" icon={<PlusOutlined />} onClick={openCreateForm}>
-            Создать тему
+            Create topic
           </Button>
         </div>
       ) : (

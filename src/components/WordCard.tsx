@@ -65,7 +65,7 @@ const WordCard: React.FC<WordCardProps> = ({
       <div 
         className={`word-card-checkbox ${isCompleted ? 'checked' : ''}`}
         onClick={handleCheckboxClick}
-        title="Отметить как выполненное (+1)"
+        title="Mark as completed (+1)"
       >
         {isCompleted && (
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -90,7 +90,7 @@ const WordCard: React.FC<WordCardProps> = ({
           <div className="word-card-details">
             {word.example && (
               <div className="word-card-detail">
-                <span className="word-card-detail-label">Пример:</span>
+                <span className="word-card-detail-label">Example:</span>
                 <span className="word-card-detail-value">
                   {isTrainingMode && !revealed ? renderHiddenContent(word.example) : word.example}
                 </span>
@@ -98,7 +98,7 @@ const WordCard: React.FC<WordCardProps> = ({
             )}
             {word.synonym && (
               <div className={`word-card-detail synonym-hidden ${synonymRevealed ? 'synonym-revealed' : ''}`}>
-                <span className="word-card-detail-label">Синоним:</span>
+                <span className="word-card-detail-label">Synonym:</span>
                 <span className="word-card-detail-value">
                   {isTrainingMode && !revealed && !synonymRevealed 
                     ? renderHiddenContent(word.synonym) 
@@ -135,7 +135,7 @@ const WordCard: React.FC<WordCardProps> = ({
                 e.stopPropagation();
                 onEdit();
               }}
-              title="Редактировать"
+              title="Edit"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -148,7 +148,7 @@ const WordCard: React.FC<WordCardProps> = ({
                 e.stopPropagation();
                 onDelete();
               }}
-              title="Удалить"
+              title="Delete"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M3 6h18" />

@@ -50,7 +50,7 @@ const WordForm: React.FC<WordFormProps> = ({
 
   return (
     <Drawer
-      title={editingWord ? 'Редактировать слово' : 'Новое слово'}
+      title={editingWord ? 'Edit word' : 'New word'}
       open={open}
       onClose={onClose}
       width={450}
@@ -58,9 +58,9 @@ const WordForm: React.FC<WordFormProps> = ({
       className="custom-drawer"
       extra={
         <Space>
-          <Button onClick={onClose}>Отмена</Button>
+          <Button onClick={onClose}>Cancel</Button>
           <Button type="primary" onClick={handleSubmit} loading={loading}>
-            {editingWord ? 'Сохранить' : 'Добавить'}
+            {editingWord ? 'Save' : 'Add'}
           </Button>
         </Space>
       }
@@ -68,35 +68,35 @@ const WordForm: React.FC<WordFormProps> = ({
       <Form form={form} layout="vertical" className="drawer-form">
         <Form.Item
           name="eng"
-          label="Английское слово"
-          rules={[{ required: true, message: 'Введите слово на английском' }]}
+          label="English word"
+          rules={[{ required: true, message: 'Required field' }]}
         >
-          <Input placeholder="to drop off" />
+          <Input placeholder="Enter English word" />
         </Form.Item>
         
         <Form.Item
           name="ru"
-          label="Русский перевод"
-          rules={[{ required: true, message: 'Введите перевод на русском' }]}
+          label="Russian translation"
+          rules={[{ required: true, message: 'Required field' }]}
         >
-          <Input placeholder="сдавать, доставить кого-либо" />
+          <Input placeholder="Enter Russian translation" />
         </Form.Item>
         
         <Form.Item
           name="example"
-          label="Пример использования"
+          label="Example"
         >
           <Input.TextArea 
-            placeholder="dropped computer off at the repair shop" 
+            placeholder="Enter example sentence" 
             rows={2}
           />
         </Form.Item>
         
         <Form.Item
           name="synonym"
-          label="Синоним"
+          label="Synonym"
         >
-          <Input placeholder="leave smth, someone" />
+          <Input placeholder="Enter synonym" />
         </Form.Item>
       </Form>
     </Drawer>
