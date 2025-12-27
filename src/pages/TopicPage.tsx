@@ -168,10 +168,6 @@ const TopicPage: React.FC = () => {
   };
 
   const handleSaveProgress = async () => {
-    if (!topic || pendingCounts.size === 0) {
-      message.info('Нет изменений для сохранения');
-      return;
-    }
     setSaving(true);
     try {
       const updatedTopics = topics.map((t) =>
@@ -190,6 +186,7 @@ const TopicPage: React.FC = () => {
       );
       if (await saveTopics(updatedTopics)) {
         setPendingCounts(new Map());
+        setCompletedWords(new Set());
         message.success('Прогресс сохранён');
       }
     } finally {
