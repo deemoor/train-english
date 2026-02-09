@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Topic } from '../types';
 
-const API_URL = 'https://api.jsonblob.com/019b6a80-e898-7117-9eb8-15dddf97c8dd';
+const API_URL = 'https://api.jsonblob.com/019c4159-d258-7d1f-ab56-b781cb1ffe02';
 
 export const api = {
   getTopics: async (): Promise<Topic[]> => {
